@@ -13,10 +13,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
+    this.getPeopleData();
   }
 
-  getData() {
+  getPeopleData() {
     fetch('https://swapi.co/api/people/')
       .then(response => response.json())
       .then(peopleData => peopleData.results)
@@ -28,34 +28,32 @@ class App extends Component {
           return fetch(person.homeworld).then(response => response.json());
         });
 
-        const promiseAllWorld = Promise.all(unresolvedPromisesWorld);
-        const promiseAllSpecies = Promise.all(unresolvedPromisesSpecies)
+        const promiseAll = Promise.all([Promise.all(unresolvedPromisesSpecies), Promise.all(unresolvedPromisesWorld)]);
+        console.log(promiseAll);
 
-        promiseAllWorld.then( planet =>{
-          const finalArray = planet.map((planet, index) => {
+        promiseAll.then( speciesPlanetArray =>{
+          console.log(speciesPlanetArray);
+          const finalArray = speciesPlanetArray[1].map((planet, index) => {
             return Object.assign({}, { name: peopleArray[index].name,
-              species: 'hi',
+              species: speciesPlanetArray[0][index].name,
               homeworld: planet.name,
               population: planet.population});
-          });
-
-          promiseAllSpecies.then( species => {
-            const newArray = this.state.peopleArray.map( peopleObject => {
-              return Object.assign({}, peopleObject, { species: species.name });
-            })
           });
 
           this.setState({ peopleArray: finalArray });
         });
       });
   }
+
+  //catch set state to error view true
+
   render() {
     return (
       <div className="App">
         <h1>App  is here</h1>
         <Crawler />
         <Controls />
-        <CardContainer />
+        <CardContainer peopleArray={this.state.peopleArray} />
       </div>
     );
   }
