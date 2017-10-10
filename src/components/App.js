@@ -21,18 +21,30 @@ class App extends Component {
       .then(response => response.json())
       .then(peopleData => peopleData.results)
       .then(peopleArray => {
-        const unresolvedPromises = peopleArray.map( person =>{
-          return fetch(person.homeworld ).then(response => response.json());
+        const unresolvedPromisesSpecies = peopleArray.map( person =>{
+          return fetch(person.species).then(response => response.json());
+        });
+        const unresolvedPromisesWorld = peopleArray.map( person =>{
+          return fetch(person.homeworld).then(response => response.json());
         });
 
-        const promiseAll = Promise.all(unresolvedPromises);
-        promiseAll.then( planet =>{
+        const promiseAllWorld = Promise.all(unresolvedPromisesWorld);
+        const promiseAllSpecies = Promise.all(unresolvedPromisesSpecies)
+
+        promiseAllWorld.then( planet =>{
           const finalArray = planet.map((planet, index) => {
             return Object.assign({}, { name: peopleArray[index].name,
-              species: peopleArray[index].species,
+              species: 'hi',
               homeworld: planet.name,
               population: planet.population});
           });
+
+          promiseAllSpecies.then( species => {
+            const newArray = this.state.peopleArray.map( peopleObject => {
+              return Object.assign({}, peopleObject, { species: species.name });
+            })
+          });
+
           this.setState({ peopleArray: finalArray });
         });
       });
