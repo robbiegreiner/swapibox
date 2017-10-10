@@ -34,7 +34,7 @@ class App extends Component {
             passengers: vehicle.passengers
           });
         });
-        this.setState({ vehicleArray: finalVehicleArray})
+        this.setState({ vehicleArray: finalVehicleArray});
       });
   }
 
@@ -46,18 +46,17 @@ class App extends Component {
       .then(planetArray => {
         const residents = planetArray.map( planet =>{
           return planet.residents;
-        })
+        });
         const unresolvedPromises = residents.map( resident =>{
           return resident.map( url => {
             return fetch(url).then(response => response.json());
-          })
+          });
         });
         const promiseAll = Promise.all(unresolvedPromises.map( innerPromiseArray => {
           return Promise.all(innerPromiseArray);
         }));
 
         promiseAll.then( residentsArray => {
-          console.log(residentsArray);
           const names = residentsArray.map( residentPlanet =>{
             return residentPlanet.map( resident => {
               return resident.name;
@@ -65,7 +64,7 @@ class App extends Component {
           });
           const nameStringArray = names.map( name => {
             return name.toString();
-          })
+          });
           const finalArray = nameStringArray.map( (names, index) => {
             return Object.assign({}, {
               name: planetArray[index].name,
