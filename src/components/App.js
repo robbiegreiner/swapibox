@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      peopleArray : []
+      swapiList: []
     };
   }
 
@@ -28,11 +28,10 @@ class App extends Component {
           return fetch(person.homeworld).then(response => response.json());
         });
 
-        const promiseAll = Promise.all([Promise.all(unresolvedPromisesSpecies), Promise.all(unresolvedPromisesWorld)]);
-        console.log(promiseAll);
+        const promiseAll = Promise.all(
+          [Promise.all(unresolvedPromisesSpecies), Promise.all(unresolvedPromisesWorld)]);
 
         promiseAll.then( speciesPlanetArray =>{
-          console.log(speciesPlanetArray);
           const finalArray = speciesPlanetArray[1].map((planet, index) => {
             return Object.assign({}, { name: peopleArray[index].name,
               species: speciesPlanetArray[0][index].name,
@@ -40,7 +39,7 @@ class App extends Component {
               population: planet.population});
           });
 
-          this.setState({ peopleArray: finalArray });
+          this.setState({ swapiList: finalArray });
         });
       });
   }
@@ -48,12 +47,13 @@ class App extends Component {
   //catch set state to error view true
 
   render() {
+    const { swapiList } = this.state;
     return (
       <div className="App">
         <h1>App  is here</h1>
         <Crawler />
         <Controls />
-        <CardContainer peopleArray={this.state.peopleArray} />
+        <CardContainer swapiList={swapiList} />
       </div>
     );
   }
