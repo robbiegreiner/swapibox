@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
+    this.getPeopleData();
   }
 
   getPeopleData() {
