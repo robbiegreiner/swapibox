@@ -18,9 +18,9 @@
 .star-wars {
   display: flex;
   justify-content: center;
-  height: 600px;
+  height: 400px;
   color: #feda4a;
-  font-size: 48px;
+  font-size: 36px;
   letter-spacing: 6px;
   line-height: 150%;
   text-align: justify;
@@ -32,12 +32,6 @@
   top: -100px;
   transform-origin: 50% 100%;
   animation: crawl 30s infinite linear; }
-
-.title {
-  margin-left: 50px;
-  color: #fff;
-  font-size: 75px;
-  font-weight: 900; }
 
 @keyframes crawl {
   0% {

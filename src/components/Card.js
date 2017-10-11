@@ -8,7 +8,7 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
     <article
       className={activeClass}
       onClick={() => onFavoriteClick(object)}>
-      <button className='fav-btn'>Favorite</button>
+      <div className="star"></div>
       <ul>
         {
           keys.map((key, index) =>

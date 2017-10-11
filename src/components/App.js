@@ -168,6 +168,7 @@ class App extends Component {
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
         <div className="App">
+          <h1 className="logo">SWAPI BOX</h1>
           <Crawler
             filmArray={filmArray}
             whichCrawler={whichCrawler} />

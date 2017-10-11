@@ -34,9 +34,7 @@ body {
 .App-intro {
   font-size: large; }
 
-.card-container {
-  width: 90%;
-  border: 2px solid blue;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; }
+.logo {
+  color: white;
+  font-family: 'Play', sans-serif;
+  font-size: 36px; }

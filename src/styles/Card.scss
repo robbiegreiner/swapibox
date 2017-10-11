@@ -1,11 +1,13 @@
 .card, .active {
+  background-image: url("https://www.transparenttextures.com/patterns/dark-geometric.png");
+  background-color: #feda4a;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 220px;
   height: 300px;
-  border: 2px solid blue;
+  border: 3px solid white;
   border-radius: 10px;
   margin: 20px 20px 20px 20px;
   li {
@@ -27,19 +29,30 @@
   }
 }
 
+.card:hover {
+  color: #AB1A10;
+  border: 3px solid #AB1A10;
+}
+
 .active {
-  background-color: pink;
   opacity: 0.9;
+  border: 6px solid #AB1A10;
+  .star {
+    background-image: url("../images/red-star.svg");
+  }
 }
 
 .residents1 {
   font-size: 12px;
 }
 
-.fav-btn{
-  margin-left: 50%;
-  background-color: #FFF;
-  border-radius: 20%;
-  width: 100px;
-  height: 20px;
+.star {
+  position: absolute;
+  margin-left: 90px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/mystar.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
 }
