@@ -140,13 +140,19 @@ class App extends Component {
         currentView: 'people'});
     }
     if (query === 'Planets') {
-      this.setState({ currentDataArray: this.state.planetArray });
+      this.setState({
+        currentDataArray: this.state.planetArray,
+        currentView: 'planets'});
     }
     if (query === 'Vehicles')  {
-      this.setState({ currentDataArray: this.state.vehicleArray });
+      this.setState({
+        currentDataArray: this.state.vehicleArray,
+        currentView: 'vehicles'});
     }
     if (query === 'Favorites' && this.state.favoritesArray)  {
-      this.setState({ currentDataArray: this.state.favoritesArray });
+      this.setState({
+        currentDataArray: this.state.favoritesArray,
+        currentView: 'favorites'});
     }
   };
 
@@ -162,12 +168,16 @@ class App extends Component {
       favoritesArray: tempArray
     });
 
+    if (this.state.currentView === 'favorites'){
+      this.setState({ currentDataArray: tempArray});
+    }
+
   }
 
   // catch set state to error view true
 
   render() {
-    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
 
     // if (peopleArray && vehicleArray && planetArray && filmArray) {
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
@@ -182,7 +192,8 @@ class App extends Component {
             currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
             onFavoriteClick={this.onFavoriteClick}
-            showFavorites={this.showFavorites}/>
+            showFavorites={this.showFavorites}
+            currentView={currentView}/>
         </div>
       );
     } else if (errorReturned) {
