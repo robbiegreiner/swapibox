@@ -14,7 +14,7 @@ const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, curr
   if (!favoritesArray.length && currentView === 'favorites'){
     return (
       <div className='card-container'>
-        <h2>Much favorites you seek...</h2>
+        <h1>Much favorites you seek...</h1>
       </div>
     );
   } else {
