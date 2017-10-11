@@ -8,10 +8,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      peopleArray : [],
-      vehicleArray: [],
-      planetArray: [],
-      filmArray: []
+      peopleArray : null,
+      vehicleArray: null,
+      planetArray: null,
+      filmArray: null,
+      whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
   }
 
@@ -126,25 +127,27 @@ class App extends Component {
   //catch set state to error view true
 
   render() {
-    const { peopleArray } = this.state;
-    return (
-      <div className="App">
-        <h1>App  is here</h1>
-        <Crawler />
-        <Controls />
-        <CardContainer peopleArray={peopleArray} />
-      </div>
-    );
+    const { peopleArray, vehicleArray, planetArray, filmArray, whichCrawler } = this.state;
+
+    if (peopleArray && vehicleArray && planetArray && filmArray) {
+      return (
+        <div className="App">
+          <h1>App  is here</h1>
+          <Crawler filmArray={filmArray}
+            whichCrawler={whichCrawler}/>
+          <Controls />
+          <CardContainer peopleArray={peopleArray} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>Loading...</h2>
+        </div>
+      );
+    }
   }
 }
 
-// {
-//     "films": "https://swapi.co/api/films/",
-//     "people": "https://swapi.co/api/people/",
-//     "planets": "https://swapi.co/api/planets/",
-//     "species": "https://swapi.co/api/species/",
-//     "starships": "https://swapi.co/api/starships/",
-//     "vehicles": "https://swapi.co/api/vehicles/"
-// }
 
 export default App;
