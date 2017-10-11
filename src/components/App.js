@@ -206,7 +206,8 @@ class App extends Component {
     } else {
       return (
         <div className="loading-screen">
-          <h2>Loading...</h2>
+          <h1>Loading...</h1>
+          <img className='yoda-img' src={ require('../images/yoda.gif') } />
         </div>
       );
     }
