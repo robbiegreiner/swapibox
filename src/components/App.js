@@ -9,6 +9,8 @@ class App extends Component {
     super();
     this.state = {
       array: null,
+      favoritesArray: [],
+      favoritesCardArray: [],
       filmArray: null,
       whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
@@ -131,6 +133,19 @@ class App extends Component {
     }
   };
 
+  onFavoriteClick = (object) => {
+    let { favoritesArray } = this.state;
+    let tempArray = favoritesArray.filter(card => card.name !== object.name);
+
+    if (tempArray.length === favoritesArray.length) {
+      tempArray.push(object);
+    }
+    this.setState({
+      favoritesArray: tempArray,
+      favoritesCardArray: object
+    });
+  }
+
   // catch set state to error view true
 
   render() {
@@ -144,7 +159,9 @@ class App extends Component {
             filmArray={filmArray}
             whichCrawler={whichCrawler} />
           <Controls onClick={this.onClick} />
-          <CardContainer array={array} />
+          <CardContainer
+            array={array}
+            onFavoriteClick={this.onFavoriteClick} />
         </div>
       );
     } else {
