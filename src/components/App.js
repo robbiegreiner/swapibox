@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import Crawler from './Crawler.js';
 import Controls from './Controls.js';
 import CardContainer from './CardContainer.js';
+import Favorites from './Favorites.js';
 import '../styles/App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      peopleArray : null,
-      vehicleArray: null,
-      planetArray: null,
+      array: null,
+      favoritesArray: [],
       filmArray: null,
       whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
@@ -18,9 +18,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getCrawlerData();
-    this.getPeopleData();
-    this.getVehicleData();
-    this.getPlanetData();
+    this.onClick();
   }
 
   getCrawlerData() {
@@ -53,7 +51,7 @@ class App extends Component {
             passengers: vehicle.passengers
           });
         });
-        this.setState({ vehicleArray: finalVehicleArray});
+        this.setState({ array: finalVehicleArray});
       });
   }
 
@@ -92,7 +90,7 @@ class App extends Component {
               climate: planetArray[index].climate,
               residents: names});
           });
-          this.setState({ planetArray: finalArray});
+          this.setState({ array: finalArray});
         });
       });
   }
@@ -118,24 +116,57 @@ class App extends Component {
               homeworld: planet.name,
               population: planet.population});
           });
-
-          this.setState({ peopleArray: finalArray });
+          this.setState({ array: finalArray });
         });
       });
   }
 
-  //catch set state to error view true
+  onClick = (query = 'People') => {
+    if (query === 'People') {
+      this.getPeopleData();
+    }
+    if (query === 'Planets') {
+      this.getPlanetData();
+    }
+    if (query === 'Vehicles')  {
+      this.getVehicleData();
+    }
+  };
+
+  onFavoriteClick = (object) => {
+    const { favoritesArray } = this.state;
+    const tempArray = favoritesArray.filter(card => card.name !== object.name);
+
+    if (tempArray.length === favoritesArray.length) {
+      tempArray.push(object);
+    }
+    this.setState({
+      favoritesArray: tempArray,
+      favoritesCardArray: object
+    });
+  }
+
+  // catch set state to error view true
 
   render() {
-    const { peopleArray, vehicleArray, planetArray, filmArray, whichCrawler } = this.state;
+    const { array, filmArray, whichCrawler, favoritesArray } = this.state;
 
-    if (peopleArray && vehicleArray && planetArray && filmArray) {
+    // if (peopleArray && vehicleArray && planetArray && filmArray) {
+    if (array && filmArray) {
       return (
         <div className="App">
-          <Crawler filmArray={filmArray}
-            whichCrawler={whichCrawler}/>
-          <Controls />
-          <CardContainer peopleArray={peopleArray} />
+          <Crawler
+            filmArray={filmArray}
+            whichCrawler={whichCrawler} />
+          <Controls onClick={this.onClick} />
+          <CardContainer
+            array={array}
+            favoritesArray={favoritesArray}
+            onFavoriteClick={this.onFavoriteClick} />
+          <Favorites
+            favoritesArray={favoritesArray}
+            onFavoriteClick={this.onFavoriteClick}
+          />
         </div>
       );
     } else {

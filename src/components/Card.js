@@ -1,24 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Card.css';
 
-const Card = ({ name, homeworld, species, language, population }) => (
-  <article className='card'>
-    <h3>{name}</h3>
-    <ul>
-      <li>Homeworld: {homeworld}</li>
-      <li>Species: {species}</li>
-      <li>Language: {language}</li>
-      <li>Population: {population}</li>
-    </ul>
-  </article>
-);
+const Card = ({ object, onFavoriteClick, activeClass }) => {
+  let keys = Object.keys(object);
+  return (
+    <article
+      className={activeClass}
+      onClick={() => onFavoriteClick(object)}>
+      <ul>
+        {
+          keys.map((key, index) =>
+            <li key={index}>
+              <span>{key}: </span>
+              {object[key]}
+            </li>)
+        }
+      </ul>
+      <button>Favorite</button>
+    </article>
+  );
+};
 
 Card.propTypes = {
-  homeworld: PropTypes.string,
-  species: PropTypes.string,
-  language: PropTypes.string,
-  population: PropTypes.string,
-  name: PropTypes.string
+  object: PropTypes.object,
+  onFavoriteClick: PropTypes.func
 };
 
 export default Card;
