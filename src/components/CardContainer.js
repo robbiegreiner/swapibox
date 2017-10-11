@@ -10,10 +10,10 @@ const activeClass = (object, favoritesArray) => {
   return cardIndex !== -1 ? 'active' : 'card';
 };
 
-const CardContainer = ({ array, onFavoriteClick, favoritesArray }) => (
+const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray }) => (
   <div className='card-container'>
     {
-      array.map( (object, index) =>
+      currentDataArray.map( (object, index) =>
         <Card
           key={index}
           object={object}
@@ -25,7 +25,7 @@ const CardContainer = ({ array, onFavoriteClick, favoritesArray }) => (
 );
 
 CardContainer.propTypes = {
-  array: PropTypes.array,
+  currentDataArray: PropTypes.array,
   onFavoriteClick: PropTypes.func,
   favoritesArray: PropTypes.array
 };

@@ -9,16 +9,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      array: null,
+      currentDataArray: null,
       favoritesArray: [],
+      peopleArray: null,
+      planetArray: null,
+      vehicleArray: null,
       filmArray: null,
       whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
   }
 
   componentDidMount() {
+    this.getPeopleData();
     this.getCrawlerData();
-    this.onClick();
+    this.getVehicleData();
+    this.getPlanetData();
   }
 
   getCrawlerData() {
@@ -51,7 +56,7 @@ class App extends Component {
             passengers: vehicle.passengers
           });
         });
-        this.setState({ array: finalVehicleArray});
+        this.setState({ vehicleArray: finalVehicleArray});
       });
   }
 
@@ -90,7 +95,7 @@ class App extends Component {
               climate: planetArray[index].climate,
               residents: names});
           });
-          this.setState({ array: finalArray});
+          this.setState({ planetArray: finalArray});
         });
       });
   }
@@ -116,23 +121,27 @@ class App extends Component {
               homeworld: planet.name,
               population: planet.population});
           });
-          this.setState({ array: finalArray });
+          this.setState({
+            peopleArray: finalArray,
+            currentDataArray: finalArray});
         });
       });
   }
 
-  onClick = (query = 'People') => {
+  // need better name for this function
+  onClick = (query) => {
     if (query === 'People') {
-      this.getPeopleData();
+      this.setState({ currentDataArray: this.state.peopleArray });
     }
     if (query === 'Planets') {
-      this.getPlanetData();
+      this.setState({ currentDataArray: this.state.planetArray });
     }
     if (query === 'Vehicles')  {
-      this.getVehicleData();
+      this.setState({ currentDataArray: this.state.vehicleArray });
     }
   };
 
+  // need better name for this
   onFavoriteClick = (object) => {
     const { favoritesArray } = this.state;
     const tempArray = favoritesArray.filter(card => card.name !== object.name);
@@ -149,10 +158,10 @@ class App extends Component {
   // catch set state to error view true
 
   render() {
-    const { array, filmArray, whichCrawler, favoritesArray } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray } = this.state;
 
     // if (peopleArray && vehicleArray && planetArray && filmArray) {
-    if (array && filmArray) {
+    if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
         <div className="App">
           <Crawler
@@ -160,7 +169,7 @@ class App extends Component {
             whichCrawler={whichCrawler} />
           <Controls onClick={this.onClick} />
           <CardContainer
-            array={array}
+            currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
             onFavoriteClick={this.onFavoriteClick} />
           <Favorites
