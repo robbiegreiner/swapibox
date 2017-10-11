@@ -24,7 +24,8 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
 
 Card.propTypes = {
   object: PropTypes.object,
-  onFavoriteClick: PropTypes.func
+  onFavoriteClick: PropTypes.func,
+  activeClass: PropTypes.string
 };
 
 export default Card;
