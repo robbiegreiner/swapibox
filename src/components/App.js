@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Crawler from './Crawler.js';
 import Controls from './Controls.js';
 import CardContainer from './CardContainer.js';
+import Favorites from './Favorites.js';
 import '../styles/App.css';
 
 class App extends Component {
@@ -10,7 +11,6 @@ class App extends Component {
     this.state = {
       array: null,
       favoritesArray: [],
-      favoritesCardArray: [],
       filmArray: null,
       whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
@@ -134,8 +134,8 @@ class App extends Component {
   };
 
   onFavoriteClick = (object) => {
-    let { favoritesArray } = this.state;
-    let tempArray = favoritesArray.filter(card => card.name !== object.name);
+    const { favoritesArray } = this.state;
+    const tempArray = favoritesArray.filter(card => card.name !== object.name);
 
     if (tempArray.length === favoritesArray.length) {
       tempArray.push(object);
@@ -149,7 +149,7 @@ class App extends Component {
   // catch set state to error view true
 
   render() {
-    const { array, filmArray, whichCrawler } = this.state;
+    const { array, filmArray, whichCrawler, favoritesArray } = this.state;
 
     // if (peopleArray && vehicleArray && planetArray && filmArray) {
     if (array && filmArray) {
@@ -161,7 +161,9 @@ class App extends Component {
           <Controls onClick={this.onClick} />
           <CardContainer
             array={array}
+            favoritesArray={favoritesArray}
             onFavoriteClick={this.onFavoriteClick} />
+            <Favorites />
         </div>
       );
     } else {

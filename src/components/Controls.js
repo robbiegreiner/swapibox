@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 
 const Controls = ({ onClick }) => (
   <div>
-    <h2>Controls here</h2>
-    <Favorites />
     <button
       name='People'
       onClick={(event) => onClick(event.target.name)}>People</button>

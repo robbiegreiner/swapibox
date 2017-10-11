@@ -3,7 +3,14 @@ import Card from './Card.js';
 import PropTypes from 'prop-types';
 import '../styles/CardContainer.css';
 
-const CardContainer = ({ array, onFavoriteClick }) => (
+const activeClass = (object, favoritesArray) => {
+  const cardIndex = favoritesArray.findIndex(
+    (favObject) => favObject.name === object.name
+  );
+  return cardIndex !== -1 ? 'active' : 'card';
+}
+
+const CardContainer = ({ array, onFavoriteClick, favoritesArray }) => (
   <div className='card-container'>
     {
       array.map( (object, index) => {
@@ -11,7 +18,8 @@ const CardContainer = ({ array, onFavoriteClick }) => (
           <Card
             key={index}
             object={object}
-            onFavoriteClick={onFavoriteClick} />
+            onFavoriteClick={onFavoriteClick}
+            activeClass={activeClass(object, favoritesArray)} />
         );
       })
     }
@@ -20,7 +28,8 @@ const CardContainer = ({ array, onFavoriteClick }) => (
 
 CardContainer.propTypes = {
   array: PropTypes.array,
-  onFavoriteClick: PropTypes.func
+  onFavoriteClick: PropTypes.func,
+  favoritesArray: PropTypes.array
 };
 
 export default CardContainer;
