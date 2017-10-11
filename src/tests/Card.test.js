@@ -33,10 +33,11 @@ let button;
     button = article.find('button');
   });
 
-  test(`should create an instance of Card component`, () => {
+  test(`should create an instance of Card component, 7 in total`, () => {
     for (let i = 0; i < wrapper.length; i++) {
       expect(wrapper[i].exists()).toEqual(true);
     }
+    expect(wrapper.length).toEqual(7);
   });
 
   test(`should render an article tag, ul tag, and li tags, and button tag`, () => {
