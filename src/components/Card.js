@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = ({ name, homeworld, species, language, population }) => (
-  <article>
+  <article className='card'>
     <h3>{name}</h3>
     <ul>
       <li>Homeworld: {homeworld}</li>
