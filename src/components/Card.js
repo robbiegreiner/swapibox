@@ -8,16 +8,16 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
     <article
       className={activeClass}
       onClick={() => onFavoriteClick(object)}>
+      <button className='fav-btn'>Favorite</button>
       <ul>
         {
           keys.map((key, index) =>
-            <li key={index}>
-              <span>{key}: </span>
-              {object[key]}
+            <li className={key} key={index}>
+              <span className={key}>{key}: </span>
+              <span className={key + "1"}>{object[key]}</span>
             </li>)
         }
       </ul>
-      <button>Favorite</button>
     </article>
   );
 };

@@ -1,0 +1,17 @@
+.controls {
+  height: 40px;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 10px 0;
+  button {
+    margin: 0px;
+    height: 40px;
+    width: 200px;
+    background-color: blue;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+  }
+}
