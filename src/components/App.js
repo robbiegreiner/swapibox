@@ -163,7 +163,10 @@ class App extends Component {
             array={array}
             favoritesArray={favoritesArray}
             onFavoriteClick={this.onFavoriteClick} />
-            <Favorites />
+          <Favorites
+            favoritesArray={favoritesArray}
+            onFavoriteClick={this.onFavoriteClick}
+          />
         </div>
       );
     } else {

@@ -8,20 +8,18 @@ const activeClass = (object, favoritesArray) => {
     (favObject) => favObject.name === object.name
   );
   return cardIndex !== -1 ? 'active' : 'card';
-}
+};
 
 const CardContainer = ({ array, onFavoriteClick, favoritesArray }) => (
   <div className='card-container'>
     {
-      array.map( (object, index) => {
-        return (
-          <Card
-            key={index}
-            object={object}
-            onFavoriteClick={onFavoriteClick}
-            activeClass={activeClass(object, favoritesArray)} />
-        );
-      })
+      array.map( (object, index) =>
+        <Card
+          key={index}
+          object={object}
+          onFavoriteClick={onFavoriteClick}
+          activeClass={activeClass(object, favoritesArray)} />
+      )
     }
   </div>
 );
