@@ -8,9 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      peopleArray : null,
-      vehicleArray: null,
-      planetArray: null,
+      array: null,
       filmArray: null,
       whichCrawler: Math.floor(Math.random() * (6 - 0 + 1))
     };
@@ -18,9 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getCrawlerData();
-    this.getPeopleData();
-    this.getVehicleData();
-    this.getPlanetData();
+    this.onClick();
   }
 
   getCrawlerData() {
@@ -53,7 +49,7 @@ class App extends Component {
             passengers: vehicle.passengers
           });
         });
-        this.setState({ vehicleArray: finalVehicleArray});
+        this.setState({ array: finalVehicleArray});
       });
   }
 
@@ -92,7 +88,7 @@ class App extends Component {
               climate: planetArray[index].climate,
               residents: names});
           });
-          this.setState({ planetArray: finalArray});
+          this.setState({ array: finalArray});
         });
       });
   }
@@ -118,24 +114,37 @@ class App extends Component {
               homeworld: planet.name,
               population: planet.population});
           });
-
-          this.setState({ peopleArray: finalArray });
+          this.setState({ array: finalArray });
         });
       });
   }
 
-  //catch set state to error view true
+  onClick = (query = 'People') => {
+    if (query === 'People') {
+      this.getPeopleData();
+    }
+    if (query === 'Planets') {
+      this.getPlanetData();
+    }
+    if (query === 'Vehicles')  {
+      this.getVehicleData();
+    }
+  };
+
+  // catch set state to error view true
 
   render() {
-    const { peopleArray, vehicleArray, planetArray, filmArray, whichCrawler } = this.state;
+    const { array, filmArray, whichCrawler } = this.state;
 
-    if (peopleArray && vehicleArray && planetArray && filmArray) {
+    // if (peopleArray && vehicleArray && planetArray && filmArray) {
+    if (array && filmArray) {
       return (
         <div className="App">
-          <Crawler filmArray={filmArray}
-            whichCrawler={whichCrawler}/>
-          <Controls />
-          <CardContainer peopleArray={peopleArray} />
+          <Crawler
+            filmArray={filmArray}
+            whichCrawler={whichCrawler} />
+          <Controls onClick={this.onClick} />
+          <CardContainer array={array} />
         </div>
       );
     } else {

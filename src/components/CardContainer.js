@@ -2,27 +2,24 @@ import React from 'react';
 import Card from './Card.js';
 import PropTypes from 'prop-types';
 
-const CardContainer = ({ peopleArray }) => (
-  <div className='card-container'>
-    {
-      peopleArray.map( (person, index) => {
-        const { homeworld, name, population, species, language } = person;
-        return (
-          <Card
-            key={index}
-            homeworld={homeworld}
-            language={language}
-            name={name}
-            species={species}
-            population={population} />
-        );
-      })
-    }
-  </div>
-);
+const CardContainer = ({ array }) => {
+  return (
+    <div className='card-container'>
+      {
+        array.map( (object, index) => {
+          return (
+            <Card
+              key={index}
+              object={object} />
+          );
+        })
+      }
+    </div>
+  );
+};
 
 CardContainer.propTypes = {
-  peopleArray: PropTypes.array
+  array: PropTypes.array
 };
 
 export default CardContainer;
