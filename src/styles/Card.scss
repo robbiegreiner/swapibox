@@ -1,15 +1,58 @@
-.card {
+.card, .active {
+  background-image: url("https://www.transparenttextures.com/patterns/dark-geometric.png");
+  background-color: #feda4a;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 220px;
   height: 300px;
-  border: 2px solid blue;
+  border: 3px solid white;
+  border-radius: 10px;
   margin: 20px 20px 20px 20px;
+  li {
+    list-style-type: none;
+    font-size: 14px;
+    margin: 20px 0px 20px 0px;
+    overflow: hidden;
+    .name {
+      display: none;
+    }
+    .name1 {
+      font-size: 30px;
+    }
+  }
+
+  ul{
+    margin: 20px 0px 20px 0px;
+    padding: 0;
+  }
+}
+
+.card:hover {
+  color: #AB1A10;
+  border: 3px solid #AB1A10;
 }
 
 .active {
-  width: 220px;
-  height: 300px;
-  border: 2px solid blue;
-  margin: 20px 20px 20px 20px;
-  background-color: pink;
   opacity: 0.9;
+  border: 6px solid #AB1A10;
+  .star {
+    background-image: url("../images/red-star.svg");
+  }
+}
+
+.residents1 {
+  font-size: 12px;
+}
+
+.star {
+  position: absolute;
+  margin-left: 90px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/mystar.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
 }

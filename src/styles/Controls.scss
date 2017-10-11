@@ -1,0 +1,21 @@
+.controls {
+  height: 40px;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 10px 0;
+  button {
+    margin: 0px;
+    height: 40px;
+    width: 150px;
+    background-color: #000;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    font-size: 16px;
+  }
+  button:hover {
+    border: 2px solid #feda4a;
+    color: #feda4a;
+  }
+}

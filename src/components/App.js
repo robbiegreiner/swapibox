@@ -9,6 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      errorReturned: null,
       currentDataArray: null,
       favoritesArray: [],
       peopleArray: null,
@@ -39,7 +40,8 @@ class App extends Component {
           });
         });
         this.setState({ filmArray: finalArray });
-      });
+      })
+      .catch( error => this.setState( { errorReturned: error } ));
   }
 
 
@@ -57,7 +59,8 @@ class App extends Component {
           });
         });
         this.setState({ vehicleArray: finalVehicleArray});
-      });
+      })
+      .catch( error => this.setState( { errorReturned: error } ));
   }
 
   //name, terrain, population, climate, residents
@@ -97,7 +100,8 @@ class App extends Component {
           });
           this.setState({ planetArray: finalArray});
         });
-      });
+      })
+      .catch( error => this.setState( { errorReturned: error } ));
   }
 
   getPeopleData() {
@@ -157,12 +161,13 @@ class App extends Component {
   // catch set state to error view true
 
   render() {
-    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned } = this.state;
 
     // if (peopleArray && vehicleArray && planetArray && filmArray) {
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
         <div className="App">
+          <h1 className="logo">SWAPI BOX</h1>
           <Crawler
             filmArray={filmArray}
             whichCrawler={whichCrawler} />
@@ -177,9 +182,16 @@ class App extends Component {
           />
         </div>
       );
+    } else if (errorReturned) {
+      return (
+        <div className="error-screen">
+          <h2>Uh oh, something went wrong.</h2>
+          <h3>{errorReturned}</h3>
+        </div>
+      );
     } else {
       return (
-        <div>
+        <div className="loading-screen">
           <h2>Loading...</h2>
         </div>
       );
