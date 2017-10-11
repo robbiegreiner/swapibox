@@ -1,35 +1,37 @@
 const filmData = [
   {
-    openingCrawl:`It is a period of civil war.\r\n
-                  Rebel spaceships, striking\r\n
-                  from a hidden base, have won\r\n
-                  their first victory against\r\n
-                  the evil Galactic Empire.\r\n\r\n
-                  During the battle, Rebel\r\n
+    openingCrawl: `It is a period of civil war.
+                  Rebel spaceships, striking
+                  from a hidden base, have won
+                  their first victory against
+                  the evil Galactic Empire.
+                  During the battle, Rebel
                   spies managed to steal secre…`,
     release: "1977-05-25",
     title: "A New Hope"
   },
   {
-    openingCrawl:`There is unrest in the Galactic\r\n
-                  Senate. Several thousand solar\r\n
-                  systems have declared their\r\n
-                  intentions to leave the Republic.\r\n\r\n
-                  This separatist movement,\r\n
-                  under the leadership of the\r\n
+    openingCrawl: `There is unrest in the Galactic
+                  Senate. Several thousand solar
+                  systems have declared their
+                  intentions to leave the Republic.
+                  This separatist movement,
+                  under the leadership of the
                   mysterious Co…`,
     release: "2002-05-16",
     title: "Attack of the Clones"
   },
   {
-    openingCrawl:`It is a dark time for the\r\n
-                  Rebellion. Although the Death\r\n
-                  Star has been destroyed,\r\n
-                  Imperial troops have driven the\r\n
-                  Rebel forces from their hidden\r\n
-                  base and pursued them across\r\n
-                  the galaxy.\r\n\r\nEvadin…`,
+    openingCrawl: `It is a dark time for the
+                  Rebellion. Although the Death
+                  Star has been destroyed,
+                  Imperial troops have driven the
+                  Rebel forces from their hidden
+                  base and pursued them across
+                  the galaxy. Evadin…`,
     release: "1980-05-17",
     title: "The Empire Strikes Back"
   }
 ];
+
+export default filmData;

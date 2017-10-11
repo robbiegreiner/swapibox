@@ -154,8 +154,7 @@ class App extends Component {
       tempArray.push(object);
     }
     this.setState({
-      favoritesArray: tempArray,
-      favoritesCardArray: object
+      favoritesArray: tempArray
     });
   }
 

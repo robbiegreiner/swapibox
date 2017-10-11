@@ -3,7 +3,6 @@ import Favorites from './Favorites.js';
 import PropTypes from 'prop-types';
 import '../styles/Controls.css';
 
-
 const Controls = ({ onClick }) => (
   <div className='controls'>
     <button
