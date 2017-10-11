@@ -2,7 +2,6 @@ import React from 'react';
 import Favorites from './Favorites.js';
 import PropTypes from 'prop-types';
 
-
 const Controls = ({ onClick }) => (
   <div>
     <button

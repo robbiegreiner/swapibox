@@ -13,7 +13,9 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
           keys.map((key, index) =>
             <li key={index}>
               <span>{key}: </span>
-              {object[key]}
+              {
+                object[key]
+              }
             </li>)
         }
       </ul>
