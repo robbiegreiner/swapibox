@@ -192,6 +192,13 @@ class App extends Component {
           <h3>{errorReturned}</h3>
         </div>
       );
+    } else if (errorReturned) {
+      return (
+        <div className="error-screen">
+          <h2>Uh oh, something went wrong.</h2>
+          <h3>{errorReturned}</h3>
+        </div>
+      );
     } else {
       return (
         <div className="loading-screen">
