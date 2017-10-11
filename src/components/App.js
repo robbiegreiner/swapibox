@@ -126,12 +126,13 @@ class App extends Component {
   //catch set state to error view true
 
   render() {
+    const { peopleArray } = this.state;
     return (
       <div className="App">
         <h1>App  is here</h1>
         <Crawler />
         <Controls />
-        <CardContainer peopleArray={this.state.peopleArray} />
+        <CardContainer peopleArray={peopleArray} />
       </div>
     );
   }
