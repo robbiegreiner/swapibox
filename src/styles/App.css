@@ -38,3 +38,11 @@ body {
   color: white;
   font-family: 'Play', sans-serif;
   font-size: 36px; }
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .loading-screen h1 {
+    font-size: 48px; }
