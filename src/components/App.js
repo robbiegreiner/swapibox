@@ -8,12 +8,92 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      peopleArray : []
+      peopleArray : [],
+      vehicleArray: [],
+      planetArray: [],
+      filmArray: []
     };
   }
 
   componentDidMount() {
+    this.getCrawlerData();
     this.getPeopleData();
+    this.getVehicleData();
+    this.getPlanetData();
+  }
+
+  getCrawlerData() {
+    fetch('https://swapi.co/api/films/')
+      .then(response => response.json())
+      .then(filmData => filmData.results)
+      .then(filmArray => {
+        const finalArray = filmArray.map( film => {
+          return Object.assign({}, {
+            title: film.title,
+            openingCrawl: film.opening_crawl,
+            release: film.release_date
+          });
+        });
+        this.setState({ filmArray: finalArray });
+      });
+  }
+
+
+  getVehicleData() {
+    fetch('https://swapi.co/api/vehicles/')
+      .then(response => response.json())
+      .then(vehicleData => vehicleData.results)
+      .then(vehicleArray => {
+        const finalVehicleArray = vehicleArray.map( vehicle => {
+          return Object.assign({}, {
+            name: vehicle.name,
+            model: vehicle.model,
+            class: vehicle.vehicle_class,
+            passengers: vehicle.passengers
+          });
+        });
+        this.setState({ vehicleArray: finalVehicleArray});
+      });
+  }
+
+  //name, terrain, population, climate, residents
+  getPlanetData() {
+    fetch('https://swapi.co/api/planets/')
+      .then(response => response.json())
+      .then(planetData => planetData.results)
+      .then(planetArray => {
+        const residents = planetArray.map( planet =>{
+          return planet.residents;
+        });
+        const unresolvedPromises = residents.map( resident =>{
+          return resident.map( url => {
+            return fetch(url).then(response => response.json());
+          });
+        });
+        const promiseAll = Promise.all(unresolvedPromises.map( innerPromiseArray => {
+          return Promise.all(innerPromiseArray);
+        }));
+
+        promiseAll.then( residentsArray => {
+          const names = residentsArray.map( residentPlanet =>{
+            return residentPlanet.map( resident => {
+              return resident.name;
+            });
+          });
+          const nameStringArray = names.map( name => {
+            return name.toString();
+          });
+          const finalArray = nameStringArray.map( (names, index) => {
+            return Object.assign({}, {
+              name: planetArray[index].name,
+              terrain: planetArray[index].terrain,
+              population: planetArray[index].population,
+              climate: planetArray[index].climate,
+              residents: names});
+          });
+          this.setState({ planetArray: finalArray});
+        });
+      });
   }
 
   getPeopleData() {
@@ -29,10 +109,8 @@ class App extends Component {
         });
 
         const promiseAll = Promise.all([Promise.all(unresolvedPromisesSpecies), Promise.all(unresolvedPromisesWorld)]);
-        console.log(promiseAll);
 
         promiseAll.then( speciesPlanetArray =>{
-          console.log(speciesPlanetArray);
           const finalArray = speciesPlanetArray[1].map((planet, index) => {
             return Object.assign({}, { name: peopleArray[index].name,
               species: speciesPlanetArray[0][index].name,
