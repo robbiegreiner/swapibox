@@ -10,14 +10,32 @@ class App extends Component {
     this.state = {
       peopleArray : [],
       vehicleArray: [],
-      planetArray: []
+      planetArray: [],
+      filmArray: []
     };
   }
 
   componentDidMount() {
+    this.getCrawlerData();
     this.getPeopleData();
     this.getVehicleData();
     this.getPlanetData();
+  }
+
+  getCrawlerData() {
+    fetch('https://swapi.co/api/films/')
+      .then(response => response.json())
+      .then(filmData => filmData.results)
+      .then(filmArray => {
+        const finalArray = filmArray.map( film => {
+          return Object.assign({}, {
+            title: film.title,
+            openingCrawl: film.opening_crawl,
+            release: film.release_date
+          });
+        });
+        this.setState({ filmArray: finalArray });
+      });
   }
 
 
