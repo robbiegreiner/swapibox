@@ -132,7 +132,6 @@ class App extends Component {
     if (peopleArray && vehicleArray && planetArray && filmArray) {
       return (
         <div className="App">
-          <h1>App  is here</h1>
           <Crawler filmArray={filmArray}
             whichCrawler={whichCrawler}/>
           <Controls />

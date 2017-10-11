@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 
 const Crawler = ({ filmArray, whichCrawler }) => {
-  
+
   return (
-    <div className='crawler'>
-      <p className='crawl-text'></p>
-      <p className='film-title'></p>
-      <p className='release-date'></p>
+    <div className='crawl-container'>
+      <div className='star-wars'>
+        <div className='crawl'>
+          <p className='crawl-text'>{filmArray[whichCrawler].openingCrawl}</p>
+          <p className='film-title'>{filmArray[whichCrawler].title}</p>
+          <p className='release-date'>{filmArray[whichCrawler].release}</p>
+        </div>
+      </div>
     </div>
   );
 };
