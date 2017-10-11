@@ -10,24 +10,35 @@ const activeClass = (object, favoritesArray) => {
   return cardIndex !== -1 ? 'active' : 'card';
 };
 
-const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray }) => (
-  <div className='card-container'>
-    {
-      currentDataArray.map( (object, index) =>
-        <Card
-          key={index}
-          object={object}
-          onFavoriteClick={onFavoriteClick}
-          activeClass={activeClass(object, favoritesArray)} />
-      )
-    }
-  </div>
-);
+const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, currentView }) => {
+  if (!favoritesArray.length && currentView === 'favorites'){
+    return (
+      <div className='card-container'>
+        <h2>Much favorites you seek...</h2>
+      </div>
+    );
+  } else {
+    return (
+      <div className='card-container'>
+        {
+          currentDataArray.map( (object, index) =>
+            <Card
+              key={index}
+              object={object}
+              onFavoriteClick={onFavoriteClick}
+              activeClass={activeClass(object, favoritesArray)} />
+          )
+        }
+      </div>
+    );
+  }
+};
 
 CardContainer.propTypes = {
   currentDataArray: PropTypes.array,
   onFavoriteClick: PropTypes.func,
-  favoritesArray: PropTypes.array
+  favoritesArray: PropTypes.array,
+  currentView: PropTypes.bool
 };
 
 export default CardContainer;
