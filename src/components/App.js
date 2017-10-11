@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Crawler from './Crawler.js';
 import Controls from './Controls.js';
 import CardContainer from './CardContainer.js';
-import Favorites from './Favorites.js';
 import '../styles/App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      currentView: 'people',
       errorReturned: null,
       currentDataArray: null,
       favoritesArray: [],
@@ -135,13 +135,18 @@ class App extends Component {
   // need better name for this function
   onClick = (query) => {
     if (query === 'People') {
-      this.setState({ currentDataArray: this.state.peopleArray });
+      this.setState({
+        currentDataArray: this.state.peopleArray,
+        currentView: 'people'});
     }
     if (query === 'Planets') {
       this.setState({ currentDataArray: this.state.planetArray });
     }
     if (query === 'Vehicles')  {
       this.setState({ currentDataArray: this.state.vehicleArray });
+    }
+    if (query === 'Favorites' && this.state.favoritesArray)  {
+      this.setState({ currentDataArray: this.state.favoritesArray });
     }
   };
 
@@ -156,6 +161,7 @@ class App extends Component {
     this.setState({
       favoritesArray: tempArray
     });
+
   }
 
   // catch set state to error view true
@@ -175,11 +181,15 @@ class App extends Component {
           <CardContainer
             currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
-            onFavoriteClick={this.onFavoriteClick} />
-          <Favorites
-            favoritesArray={favoritesArray}
             onFavoriteClick={this.onFavoriteClick}
-          />
+            showFavorites={this.showFavorites}/>
+        </div>
+      );
+    } else if (errorReturned) {
+      return (
+        <div className="error-screen">
+          <h2>Uh oh, something went wrong.</h2>
+          <h3>{errorReturned}</h3>
         </div>
       );
     } else if (errorReturned) {
