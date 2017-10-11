@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      swapiList: []
+      peopleArray: []
     };
   }
 
@@ -39,7 +39,7 @@ class App extends Component {
               population: planet.population});
           });
 
-          this.setState({ swapiList: finalArray });
+          this.setState({ peopleArray: finalArray });
         });
       });
   }
@@ -47,13 +47,13 @@ class App extends Component {
   //catch set state to error view true
 
   render() {
-    const { swapiList } = this.state;
+    const { peopleArray } = this.state;
     return (
       <div className="App">
         <h1>App  is here</h1>
         <Crawler />
         <Controls />
-        <CardContainer swapiList={swapiList} />
+        <CardContainer peopleArray={peopleArray} />
       </div>
     );
   }

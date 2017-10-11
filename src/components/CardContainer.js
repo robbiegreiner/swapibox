@@ -2,10 +2,10 @@ import React from 'react';
 import Card from './Card.js';
 import PropTypes from 'prop-types';
 
-const CardContainer = ({ swapiList }) => (
+const CardContainer = ({ peopleArray }) => (
   <div className='card-container'>
     {
-      swapiList.map( (person, index) => {
+      peopleArray.map( (person, index) => {
         const { homeworld, name, population, species, language } = person;
         return (
           <Card
@@ -22,7 +22,7 @@ const CardContainer = ({ swapiList }) => (
 );
 
 CardContainer.propTypes = {
-  swapiList: PropTypes.array
+  peopleArray: PropTypes.array
 };
 
 export default CardContainer;
