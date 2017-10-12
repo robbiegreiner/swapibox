@@ -29,9 +29,9 @@ describe(`Card component unit testing`, () => {
   });
 
   test(`should create an instance of Card component, 7 in total`, () => {
-    for (let index = 0; index < wrapper.length; index++) {
-      expect(wrapper[index].exists()).toEqual(true);
-    }
+    wrapper.forEach( card => {
+      expect(card.exists()).toEqual(true);
+    });
     expect(wrapper.length).toEqual(7);
   });
 
