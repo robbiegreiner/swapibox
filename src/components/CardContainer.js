@@ -10,7 +10,7 @@ const activeClass = (object, favoritesArray) => {
   return cardIndex !== -1 ? 'active' : 'card';
 };
 
-const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, currentView }) => {
+const CardContainer = ({ currentDataArray, setFavorite, favoritesArray, currentView }) => {
   if (!favoritesArray.length && currentView === 'Favorites'){
     return (
       <div className='card-container'>
@@ -25,7 +25,7 @@ const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, curr
             <Card
               key={index}
               object={object}
-              onFavoriteClick={onFavoriteClick}
+              setFavorite={setFavorite}
               activeClass={activeClass(object, favoritesArray)} />
           )
         }
@@ -36,7 +36,7 @@ const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, curr
 
 CardContainer.propTypes = {
   currentDataArray: PropTypes.array,
-  onFavoriteClick: PropTypes.func,
+  setFavorite: PropTypes.func,
   favoritesArray: PropTypes.array,
   currentView: PropTypes.string
 };

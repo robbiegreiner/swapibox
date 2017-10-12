@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Card.css';
 
-const Card = ({ object, onFavoriteClick, activeClass }) => {
+const Card = ({ object, setFavorite, activeClass }) => {
   let keys = Object.keys(object);
   return (
     <article
       className={activeClass}
-      onClick={() => onFavoriteClick(object)}>
+      onClick={() => setFavorite(object)}>
       <div className="star"></div>
       <ul>
         {
@@ -24,7 +24,7 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
 
 Card.propTypes = {
   object: PropTypes.object,
-  onFavoriteClick: PropTypes.func,
+  setFavorite: PropTypes.func,
   activeClass: PropTypes.string
 };
 

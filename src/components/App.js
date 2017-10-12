@@ -129,11 +129,10 @@ class App extends Component {
             peopleArray: finalArray,
             currentDataArray: finalArray});
         });
-      });
+      }).catch( error => this.setState( { errorReturned: error } ));
   }
 
-  // need better name for this function
-  onClick = (query, event) => {
+  cardClicked = (query) => {
     if (query === 'People') {
       this.setState({
         currentDataArray: this.state.peopleArray,
@@ -157,7 +156,7 @@ class App extends Component {
   };
 
   // need better name for this
-  onFavoriteClick = (object) => {
+  setFavorite = (object) => {
     const { favoritesArray } = this.state;
     const tempArray = favoritesArray.filter(card => card.name !== object.name);
 
@@ -174,8 +173,6 @@ class App extends Component {
 
   }
 
-  // catch set state to error view true
-
   render() {
     const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
 
@@ -188,13 +185,13 @@ class App extends Component {
             filmArray={filmArray}
             whichCrawler={whichCrawler} />
           <Controls
-            onClick={this.onClick}
+            cardClicked={this.cardClicked}
             favoritesArray={favoritesArray}
             currentView={currentView}/>
           <CardContainer
             currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
-            onFavoriteClick={this.onFavoriteClick}
+            setFavorite={this.setFavorite}
             showFavorites={this.showFavorites}
             currentView={currentView}/>
         </div>

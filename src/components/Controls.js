@@ -9,29 +9,29 @@ const activeButton = (currentView, category) => {
 };
 
 
-const Controls = ({ onClick, favoritesArray, currentView }) => (
+const Controls = ({ cardClicked, favoritesArray, currentView }) => (
   <div className='controls'>
     <button
       className={activeButton(currentView, 'People')}
       name='People'
-      onClick={(event) => onClick(event.target.name, event)}>People</button>
+      onClick={(event) => cardClicked(event.target.name, event)}>People</button>
     <button
       className={activeButton(currentView, 'Planets')}
       name='Planets'
-      onClick={(event) => onClick(event.target.name, event)}>Planets</button>
+      onClick={(event) => cardClicked(event.target.name, event)}>Planets</button>
     <button
       className={activeButton(currentView, 'Vehicles')}
       name='Vehicles'
-      onClick={(event) => onClick(event.target.name, event)}>Vehicles</button>
+      onClick={(event) => cardClicked(event.target.name, event)}>Vehicles</button>
     <button
       className={activeButton(currentView, 'Favorites')}
       name='Favorites'
-      onClick={(event) => onClick(event.target.name, event)}>Favorites <span>{favoritesArray.length}</span></button>
+      onClick={(event) => cardClicked(event.target.name, event)}>Favorites <span>{favoritesArray.length}</span></button>
   </div>
 );
 
 Controls.propTypes = {
-  onClick: PropTypes.func,
+  cardClicked: PropTypes.func,
   favoritesArray: PropTypes.array,
   currentView: PropTypes.string
 };
