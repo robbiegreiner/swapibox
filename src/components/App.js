@@ -36,13 +36,15 @@ class App extends Component {
     const peopleArray = JSON.parse(localStorage.getItem('peopleArray'));
     const vehicleArray = JSON.parse(localStorage.getItem('vehicleArray'));
     const planetArray = JSON.parse(localStorage.getItem('planetArray'));
+    const favoritesArray = JSON.parse(localStorage.getItem('favoritesArray'));
 
     this.setState({
       peopleArray: peopleArray,
       filmArray: filmArray,
       vehicleArray: vehicleArray,
       planetArray: planetArray,
-      currentDataArray: peopleArray
+      currentDataArray: peopleArray,
+      favoritesArray: favoritesArray
     });
   }
 
@@ -183,16 +185,17 @@ class App extends Component {
     }
   };
 
-  setFavorite = (object) => {
+  setFavorite = (cardObject) => {
     const { favoritesArray } = this.state;
-    const tempArray = favoritesArray.filter(card => card.name !== object.name);
+    const tempArray = favoritesArray.filter(card => card.name !== cardObject.name);
 
     if (tempArray.length === favoritesArray.length) {
-      tempArray.push(object);
+      tempArray.push(cardObject);
     }
     this.setState({
       favoritesArray: tempArray
     });
+    localStorage.setItem('favoritesArray', JSON.stringify(favoritesArray));
 
     if (this.state.currentView === 'Favorites'){
       this.setState({ currentDataArray: tempArray});
