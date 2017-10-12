@@ -11,7 +11,7 @@ const activeClass = (object, favoritesArray) => {
 };
 
 const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, currentView }) => {
-  if (!favoritesArray.length && currentView === 'favorites'){
+  if (!favoritesArray.length && currentView === 'Favorites'){
     return (
       <div className='card-container'>
         <h1>Much favorites you seek...</h1>

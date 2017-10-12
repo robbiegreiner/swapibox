@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentView: 'people',
+      currentView: 'People',
       errorReturned: null,
       currentDataArray: null,
       favoritesArray: [],
@@ -133,26 +133,26 @@ class App extends Component {
   }
 
   // need better name for this function
-  onClick = (query) => {
+  onClick = (query, event) => {
     if (query === 'People') {
       this.setState({
         currentDataArray: this.state.peopleArray,
-        currentView: 'people'});
+        currentView: 'People'});
     }
     if (query === 'Planets') {
       this.setState({
         currentDataArray: this.state.planetArray,
-        currentView: 'planets'});
+        currentView: 'Planets'});
     }
     if (query === 'Vehicles')  {
       this.setState({
         currentDataArray: this.state.vehicleArray,
-        currentView: 'vehicles'});
+        currentView: 'Vehicles'});
     }
     if (query === 'Favorites' && this.state.favoritesArray)  {
       this.setState({
         currentDataArray: this.state.favoritesArray,
-        currentView: 'favorites'});
+        currentView: 'Favorites'});
     }
   };
 
@@ -168,7 +168,7 @@ class App extends Component {
       favoritesArray: tempArray
     });
 
-    if (this.state.currentView === 'favorites'){
+    if (this.state.currentView === 'Favorites'){
       this.setState({ currentDataArray: tempArray});
     }
 
@@ -189,7 +189,8 @@ class App extends Component {
             whichCrawler={whichCrawler} />
           <Controls
             onClick={this.onClick}
-            favoritesArray={favoritesArray}/>
+            favoritesArray={favoritesArray}
+            currentView={currentView}/>
           <CardContainer
             currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
