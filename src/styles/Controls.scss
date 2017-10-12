@@ -2,6 +2,7 @@
   height: 40px;
   width: 800px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 30px 0 10px 0;
   button {
@@ -22,5 +23,12 @@
   button:hover {
     border: 2px solid #feda4a;
     color: #feda4a;
+  }
+}
+
+@media (max-width: 830px){
+  .controls {
+    height: 120px;
+    width: 400px;
   }
 }
