@@ -63,7 +63,6 @@ class App extends Component {
       .catch( error => this.setState( { errorReturned: error } ));
   }
 
-  //name, terrain, population, climate, residents
   getPlanetData() {
     fetch('https://swapi.co/api/planets/')
       .then(response => response.json())
@@ -155,7 +154,6 @@ class App extends Component {
     }
   };
 
-  // need better name for this
   setFavorite = (object) => {
     const { favoritesArray } = this.state;
     const tempArray = favoritesArray.filter(card => card.name !== object.name);
@@ -176,7 +174,6 @@ class App extends Component {
   render() {
     const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
 
-    // if (peopleArray && vehicleArray && planetArray && filmArray) {
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
         <div className="App">
