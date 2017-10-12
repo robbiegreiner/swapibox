@@ -209,7 +209,7 @@ class App extends Component {
   }
 
   render() {
-    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView, errorMessage } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
 
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
@@ -234,7 +234,6 @@ class App extends Component {
       return (
         <div className="error-screen">
           <h1>Uh oh, something went wrong.</h1>
-          <h2>{errorMessage}</h2>
           <img alt='luke yelling no' className='luke-img' src={ require('../images/error.gif') } />
         </div>
       );

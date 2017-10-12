@@ -39,9 +39,6 @@ describe('App componet unit testing', () => {
       body: planetData
     });
 
-    const thisLocalStorage = new storageMock();
-    window.localStorage = thisLocalStorage.store;
-
     wrapper = mount(<App />);
 
     await pause();
