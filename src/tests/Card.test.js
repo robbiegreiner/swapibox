@@ -4,33 +4,30 @@ import Card from '../components/Card';
 import { mount } from 'enzyme';
 import config from '../setupTests.js';
 import mockData from './mockData.js';
+import 'jest';
 
 describe(`Card component unit testing`, () => {
 
-let wrapper = [];
-let mockFuncClick;
-let mockFuncClass;
-let article;
-let ul;
-let li;
-let button;
+  let wrapper = [];
+  let mockFuncClick;
+  let article;
+  let ul;
+  let li;
 
   beforeEach(() => {
-    mockFuncClick = () => {};
-    mockFuncClass = () => {};
+    mockFuncClick = jest.fn(() => {});
     mockData.map((object, index) => {
       let objects = mount(
         <Card
           key={index}
-          object={object}
-          onFavoriteClick={mockFuncClick}
+          cardObject={object}
+          setFavorite={mockFuncClick}
           activeClass='active' />);
       wrapper.push(objects);
     });
     article = wrapper[0].find('article');
     ul = article.find('ul');
     li = ul.find('li').first();
-    button = article.find('button');
   });
 
   test(`should create an instance of Card component, 7 in total`, () => {
@@ -40,20 +37,20 @@ let button;
     expect(wrapper.length).toEqual(7);
   });
 
-  test(`should render an article tag, ul tag, and li tags, and button tag`, () => {
+  test(`should render an article tag, ul tag, and li tags,`, () => {
     expect(article.type()).toEqual('article');
     expect(ul.type()).toEqual('ul');
     expect(li.type()).toEqual('li');
-    expect(button.type()).toEqual('button');
   });
 
   test(`should render correct node element`, () => {
-    expect(button.contains(<button>Favorite</button>)).toEqual(true);
-    expect(li.contains(<li><span>homeworld: </span>Tatooine</li>)).toEqual(true);
+    expect(li.contains(<li className="homeworld">
+      <span className="homeworld">homeworld: </span>
+      <span className="homeworld1">Tatooine</span>
+    </li>)).toEqual(true);
   });
 
   test(`article should be parent container`, () => {
-    expect(button.parent().is('article')).toEqual(true);
     expect(ul.parent().is('article')).toEqual(true);
   });
 
