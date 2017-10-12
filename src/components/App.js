@@ -27,6 +27,12 @@ class App extends Component {
     this.getPlanetData();
   }
 
+  setErrorStatus(error) {
+    this.setState({
+      errorReturned: true,
+      errorMessage: error.message });
+  }
+
   getCrawlerData() {
     fetch('https://swapi.co/api/films/')
       .then(response => response.json())
@@ -41,7 +47,7 @@ class App extends Component {
         });
         this.setState({ filmArray: finalArray });
       })
-      .catch( error => this.setState( { errorReturned: error } ));
+      .catch( error => this.setErrorStatus(error));
   }
 
 
@@ -60,7 +66,7 @@ class App extends Component {
         });
         this.setState({ vehicleArray: finalVehicleArray});
       })
-      .catch( error => this.setState( { errorReturned: error } ));
+      .catch( error => this.setErrorStatus(error));
   }
 
   getPlanetData() {
@@ -100,7 +106,7 @@ class App extends Component {
           this.setState({ planetArray: finalArray});
         });
       })
-      .catch( error => this.setState( { errorReturned: error } ));
+      .catch( error => this.setErrorStatus(error));
   }
 
   getPeopleData() {
@@ -128,7 +134,7 @@ class App extends Component {
             peopleArray: finalArray,
             currentDataArray: finalArray});
         });
-      }).catch( error => this.setState( { errorReturned: error } ));
+      }).catch( error => this.setErrorStatus(error));
   }
 
   cardClicked = (query) => {
@@ -172,7 +178,7 @@ class App extends Component {
   }
 
   render() {
-    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView, errorMessage } = this.state;
 
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
@@ -196,15 +202,9 @@ class App extends Component {
     } else if (errorReturned) {
       return (
         <div className="error-screen">
-          <h2>Uh oh, something went wrong.</h2>
-          <h3>{errorReturned}</h3>
-        </div>
-      );
-    } else if (errorReturned) {
-      return (
-        <div className="error-screen">
-          <h2>Uh oh, something went wrong.</h2>
-          <h3>{errorReturned}</h3>
+          <h1>Uh oh, something went wrong.</h1>
+          <h2>{errorMessage}</h2>
+          <img alt='luke yelling no' className='luke-img' src={ require('../images/error.gif') } />
         </div>
       );
     } else {
