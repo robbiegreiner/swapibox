@@ -10,7 +10,7 @@ import planetData from './planetMockData.js';
 import vehicleData from './vehicleMockData.js';
 import fetchMock from 'fetch-mock';
 
-describe('App componet unit testing', () => {
+describe('App component unit testing', () => {
 
   let wrapper;
 
