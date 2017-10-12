@@ -12,4 +12,6 @@ run `npm install`
 
 run `npm start`
 
+If tests error - run `brew install watchman`
+
 ![screen shot 2017-10-12 at 8 11 02 am](https://user-images.githubusercontent.com/28495779/31500573-fcb7b10a-af24-11e7-8351-dc59f8dd5baf.png)
