@@ -4,6 +4,7 @@ import Crawler from '../components/Crawler';
 import { mount } from 'enzyme';
 import config from '../setupTests.js';
 import filmData from './filmMockData.js';
+import 'jest';
 
 describe(`Controls component unit testing`, () => {
   let wrapper;
@@ -20,7 +21,7 @@ describe(`Controls component unit testing`, () => {
   let p3text;
 
   beforeEach(() => {
-    
+
     whichCrawler = Math.floor((Math.random() * 3) + 0);
     filmArray = filmData;
     wrapper = mount(
