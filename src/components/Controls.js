@@ -9,29 +9,29 @@ const activeButton = (currentView, category) => {
 };
 
 
-const Controls = ({ cardClicked, favoritesArray, currentView }) => (
+const Controls = ({ changeCategory, favoritesArray, currentView }) => (
   <div className='controls'>
     <button
       className={activeButton(currentView, 'People')}
       name='People'
-      onClick={(event) => cardClicked(event.target.name, event)}>People</button>
+      onClick={(event) => changeCategory(event.target.name, event)}>People</button>
     <button
       className={activeButton(currentView, 'Planets')}
       name='Planets'
-      onClick={(event) => cardClicked(event.target.name, event)}>Planets</button>
+      onClick={(event) => changeCategory(event.target.name, event)}>Planets</button>
     <button
       className={activeButton(currentView, 'Vehicles')}
       name='Vehicles'
-      onClick={(event) => cardClicked(event.target.name, event)}>Vehicles</button>
+      onClick={(event) => changeCategory(event.target.name, event)}>Vehicles</button>
     <button
       className={activeButton(currentView, 'Favorites')}
       name='Favorites'
-      onClick={(event) => cardClicked(event.target.name, event)}>Favorites <span>{favoritesArray.length}</span></button>
+      onClick={(event) => changeCategory(event.target.name, event)}>Favorites <span>{favoritesArray.length}</span></button>
   </div>
 );
 
 Controls.propTypes = {
-  cardClicked: PropTypes.func,
+  changeCategory: PropTypes.func,
   favoritesArray: PropTypes.array,
   currentView: PropTypes.string
 };

@@ -166,7 +166,7 @@ class App extends Component {
       }).catch( error => this.setErrorStatus(error));
   }
 
-  cardClicked = (query) => {
+  changeCategory = (query) => {
     if (query === 'People') {
       this.setState({
         currentDataArray: this.state.peopleArray,
@@ -219,7 +219,7 @@ class App extends Component {
             filmArray={filmArray}
             whichCrawler={whichCrawler} />
           <Controls
-            cardClicked={this.cardClicked}
+            changeCategory={this.changeCategory}
             favoritesArray={favoritesArray}
             currentView={currentView}/>
           <CardContainer
