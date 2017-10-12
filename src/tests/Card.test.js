@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Card from '../components/Card';
 import { mount } from 'enzyme';
-import config from '../setupTests.js';
 import mockData from './mockData.js';
 import 'jest';
 
@@ -31,8 +29,8 @@ describe(`Card component unit testing`, () => {
   });
 
   test(`should create an instance of Card component, 7 in total`, () => {
-    for (let i = 0; i < wrapper.length; i++) {
-      expect(wrapper[i].exists()).toEqual(true);
+    for (let index = 0; index < wrapper.length; index++) {
+      expect(wrapper[index].exists()).toEqual(true);
     }
     expect(wrapper.length).toEqual(7);
   });

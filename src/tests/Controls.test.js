@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Controls from '../components/Controls';
-import { mount, shallow } from 'enzyme';
-import config from '../setupTests.js';
+import { mount } from 'enzyme';
 import favoriteData from './favoriteMockData';
 import Jest from 'jest';
 

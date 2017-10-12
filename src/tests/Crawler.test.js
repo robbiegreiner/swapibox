@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Crawler from '../components/Crawler';
 import { mount } from 'enzyme';
-import config from '../setupTests.js';
 import filmData from './filmMockData.js';
 import 'jest';
 

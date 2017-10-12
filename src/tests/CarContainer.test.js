@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import CardContainer from '../components/CardContainer';
 import { mount } from 'enzyme';
-import config from '../setupTests.js';
 import mockData from './mockData.js';
 import favoriteData from './favoriteMockData.js';
 import 'jest';

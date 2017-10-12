@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from '../components/App';
 import { mount } from 'enzyme';
-import config from '../setupTests.js';
 import mockData from './mockData.js';
 import favoriteData from './favoriteMockData.js';
 import filmData from './filmMockData.js';
 import planetData from './planetMockData.js';
 import vehicleData from './vehicleMockData.js';
 import fetchMock from 'fetch-mock';
+import storageMock from './storageMock';
 
 describe('App componet unit testing', () => {
 

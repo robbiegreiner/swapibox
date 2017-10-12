@@ -21,10 +21,35 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getPeopleData();
-    this.getCrawlerData();
-    this.getVehicleData();
-    this.getPlanetData();
+    if (localStorage.filmArray && localStorage.peopleArray && localStorage.vehicleArray && localStorage.planetArray){
+      this.getFromLocalStorage();
+    } else {
+      this.getPeopleData();
+      this.getCrawlerData();
+      this.getVehicleData();
+      this.getPlanetData();
+    }
+  }
+
+  getFromLocalStorage() {
+    const filmArray = JSON.parse(localStorage.getItem('filmArray'));
+    const peopleArray = JSON.parse(localStorage.getItem('peopleArray'));
+    const vehicleArray = JSON.parse(localStorage.getItem('vehicleArray'));
+    const planetArray = JSON.parse(localStorage.getItem('planetArray'));
+    let favoritesArray = [];
+    if (localStorage.favoritesArray) {
+      favoritesArray = JSON.parse(localStorage.getItem('favoritesArray'));
+    }
+
+
+    this.setState({
+      peopleArray: peopleArray,
+      filmArray: filmArray,
+      vehicleArray: vehicleArray,
+      planetArray: planetArray,
+      currentDataArray: peopleArray,
+      favoritesArray: favoritesArray
+    });
   }
 
   setErrorStatus(error) {
@@ -46,6 +71,7 @@ class App extends Component {
           });
         });
         this.setState({ filmArray: finalArray });
+        localStorage.setItem('filmArray', JSON.stringify(finalArray));
       })
       .catch( error => this.setErrorStatus(error));
   }
@@ -65,6 +91,7 @@ class App extends Component {
           });
         });
         this.setState({ vehicleArray: finalVehicleArray});
+        localStorage.setItem('vehicleArray', JSON.stringify(finalVehicleArray));
       })
       .catch( error => this.setErrorStatus(error));
   }
@@ -104,6 +131,7 @@ class App extends Component {
               residents: names});
           });
           this.setState({ planetArray: finalArray});
+          localStorage.setItem('planetArray', JSON.stringify(finalArray));
         });
       })
       .catch( error => this.setErrorStatus(error));
@@ -133,6 +161,7 @@ class App extends Component {
           this.setState({
             peopleArray: finalArray,
             currentDataArray: finalArray});
+          localStorage.setItem('peopleArray', JSON.stringify(finalArray));
         });
       }).catch( error => this.setErrorStatus(error));
   }
@@ -160,16 +189,18 @@ class App extends Component {
     }
   };
 
-  setFavorite = (object) => {
+  setFavorite = (cardObject) => {
     const { favoritesArray } = this.state;
-    const tempArray = favoritesArray.filter(card => card.name !== object.name);
+    const tempArray = favoritesArray.filter(card => card.name !== cardObject.name);
 
     if (tempArray.length === favoritesArray.length) {
-      tempArray.push(object);
+      tempArray.push(cardObject);
     }
     this.setState({
       favoritesArray: tempArray
     });
+
+    localStorage.setItem('favoritesArray', JSON.stringify(tempArray));
 
     if (this.state.currentView === 'Favorites'){
       this.setState({ currentDataArray: tempArray});
@@ -178,7 +209,7 @@ class App extends Component {
   }
 
   render() {
-    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView, errorMessage } = this.state;
+    const { peopleArray, planetArray, vehicleArray, filmArray, whichCrawler, favoritesArray, currentDataArray, errorReturned, currentView } = this.state;
 
     if (peopleArray && planetArray && vehicleArray && filmArray && currentDataArray) {
       return (
@@ -203,7 +234,6 @@ class App extends Component {
       return (
         <div className="error-screen">
           <h1>Uh oh, something went wrong.</h1>
-          <h2>{errorMessage}</h2>
           <img alt='luke yelling no' className='luke-img' src={ require('../images/error.gif') } />
         </div>
       );
