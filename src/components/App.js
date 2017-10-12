@@ -187,7 +187,9 @@ class App extends Component {
           <Crawler
             filmArray={filmArray}
             whichCrawler={whichCrawler} />
-          <Controls onClick={this.onClick} />
+          <Controls
+            onClick={this.onClick}
+            favoritesArray={favoritesArray}/>
           <CardContainer
             currentDataArray={currentDataArray}
             favoritesArray={favoritesArray}
@@ -207,7 +209,7 @@ class App extends Component {
       return (
         <div className="loading-screen">
           <h1>Loading...</h1>
-          <img className='yoda-img' src={ require('../images/yoda.gif') } />
+          <img alt='luke lifting up yoda' className='yoda-img' src={ require('../images/yoda.gif') } />
         </div>
       );
     }

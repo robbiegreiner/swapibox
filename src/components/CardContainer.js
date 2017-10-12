@@ -38,7 +38,7 @@ CardContainer.propTypes = {
   currentDataArray: PropTypes.array,
   onFavoriteClick: PropTypes.func,
   favoritesArray: PropTypes.array,
-  currentView: PropTypes.bool
+  currentView: PropTypes.string
 };
 
 export default CardContainer;

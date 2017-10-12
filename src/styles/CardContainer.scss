@@ -1,6 +1,11 @@
 .card-container {
-  width: 96%;
+  width: 94%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+   h1{
+     margin-top: 60px;
+     font-size: 60px;
+   }
 }
