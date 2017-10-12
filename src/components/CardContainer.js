@@ -3,9 +3,9 @@ import Card from './Card.js';
 import PropTypes from 'prop-types';
 import '../styles/CardContainer.css';
 
-const activeClass = (object, favoritesArray) => {
+const activeClass = (cardObject, favoritesArray) => {
   const cardIndex = favoritesArray.findIndex(
-    (favObject) => favObject.name === object.name
+    (favObject) => favObject.name === cardObject.name
   );
   return cardIndex !== -1 ? 'active' : 'card';
 };
@@ -21,12 +21,12 @@ const CardContainer = ({ currentDataArray, setFavorite, favoritesArray, currentV
     return (
       <div className='card-container'>
         {
-          currentDataArray.map( (object, index) =>
+          currentDataArray.map( (cardObject, index) =>
             <Card
               key={index}
-              object={object}
+              cardObject={cardObject}
               setFavorite={setFavorite}
-              activeClass={activeClass(object, favoritesArray)} />
+              activeClass={activeClass(cardObject, favoritesArray)} />
           )
         }
       </div>
