@@ -9,7 +9,7 @@ import vehicleData from './vehicleMockData.js';
 import fetchMock from 'fetch-mock';
 import storageMock from './storageMock';
 
-describe('App componet unit testing', () => {
+describe('App component unit testing', () => {
 
   let wrapper;
 
