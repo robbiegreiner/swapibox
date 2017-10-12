@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Card.css';
 
-const Card = ({ object, onFavoriteClick, activeClass }) => {
-  let keys = Object.keys(object);
+const Card = ({ cardObject, setFavorite, activeClass }) => {
+  let keys = Object.keys(cardObject);
   return (
     <article
       className={activeClass}
-      onClick={() => onFavoriteClick(object)}>
+      onClick={() => setFavorite(cardObject)}>
       <div className="star"></div>
       <ul>
         {
           keys.map((key, index) =>
             <li className={key} key={index}>
               <span className={key}>{key}: </span>
-              <span className={key + "1"}>{object[key]}</span>
+              <span className={key + "1"}>{cardObject[key]}</span>
             </li>)
         }
       </ul>
@@ -23,8 +23,8 @@ const Card = ({ object, onFavoriteClick, activeClass }) => {
 };
 
 Card.propTypes = {
-  object: PropTypes.object,
-  onFavoriteClick: PropTypes.func,
+  cardObject: PropTypes.object,
+  setFavorite: PropTypes.func,
   activeClass: PropTypes.string
 };
 

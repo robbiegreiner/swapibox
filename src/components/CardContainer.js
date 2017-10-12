@@ -3,14 +3,14 @@ import Card from './Card.js';
 import PropTypes from 'prop-types';
 import '../styles/CardContainer.css';
 
-const activeClass = (object, favoritesArray) => {
+const activeClass = (cardObject, favoritesArray) => {
   const cardIndex = favoritesArray.findIndex(
-    (favObject) => favObject.name === object.name
+    (favObject) => favObject.name === cardObject.name
   );
   return cardIndex !== -1 ? 'active' : 'card';
 };
 
-const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, currentView }) => {
+const CardContainer = ({ currentDataArray, setFavorite, favoritesArray, currentView }) => {
   if (!favoritesArray.length && currentView === 'Favorites'){
     return (
       <div className='card-container'>
@@ -21,12 +21,12 @@ const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, curr
     return (
       <div className='card-container'>
         {
-          currentDataArray.map( (object, index) =>
+          currentDataArray.map( (cardObject, index) =>
             <Card
               key={index}
-              object={object}
-              onFavoriteClick={onFavoriteClick}
-              activeClass={activeClass(object, favoritesArray)} />
+              cardObject={cardObject}
+              setFavorite={setFavorite}
+              activeClass={activeClass(cardObject, favoritesArray)} />
           )
         }
       </div>
@@ -36,7 +36,7 @@ const CardContainer = ({ currentDataArray, onFavoriteClick, favoritesArray, curr
 
 CardContainer.propTypes = {
   currentDataArray: PropTypes.array,
-  onFavoriteClick: PropTypes.func,
+  setFavorite: PropTypes.func,
   favoritesArray: PropTypes.array,
   currentView: PropTypes.string
 };
