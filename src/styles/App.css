@@ -41,6 +41,17 @@ body {
   letter-spacing: 1px;
   margin: 0 0 0 0; }
 
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .error-screen h1 {
+    margin-top: 100px; }
+
+.luke-img {
+  width: 500px; }
+
 .loading-screen {
   display: flex;
   flex-direction: column;
