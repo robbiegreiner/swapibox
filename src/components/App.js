@@ -195,7 +195,7 @@ class App extends Component {
     this.setState({
       favoritesArray: tempArray
     });
-    localStorage.setItem('favoritesArray', JSON.stringify(favoritesArray));
+    localStorage.setItem('favoritesArray', JSON.stringify(tempArray));
 
     if (this.state.currentView === 'Favorites'){
       this.setState({ currentDataArray: tempArray});
