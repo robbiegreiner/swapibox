@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Controls.css';
 
-const activeButton = (currentView, category) => {
-  if (currentView === category){
-    return 'active-button';
-  }
-};
-
-
 const Controls = ({ onClick, favoritesArray, currentView }) => (
   <div className='controls'>
     <button
