@@ -21,10 +21,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getPeopleData();
-    this.getCrawlerData();
-    this.getVehicleData();
-    this.getPlanetData();
+    if (localStorage.filmArray && localStorage.peopleArray && localStorage.vehicleArray && localStorage.planetArray){
+      this.getFromLocalStorage();
+    } else {
+      this.getPeopleData();
+      this.getCrawlerData();
+      this.getVehicleData();
+      this.getPlanetData();
+    }
+  }
+
+  getFromLocalStorage() {
+    const filmArray = JSON.parse(localStorage.getItem('filmArray'));
+    const peopleArray = JSON.parse(localStorage.getItem('peopleArray'));
+    const vehicleArray = JSON.parse(localStorage.getItem('vehicleArray'));
+    const planetArray = JSON.parse(localStorage.getItem('planetArray'));
+
+    this.setState({
+      peopleArray: peopleArray,
+      filmArray: filmArray,
+      vehicleArray: vehicleArray,
+      planetArray: planetArray,
+      currentDataArray: peopleArray
+    });
   }
 
   setErrorStatus(error) {
@@ -46,6 +65,7 @@ class App extends Component {
           });
         });
         this.setState({ filmArray: finalArray });
+        localStorage.setItem('filmArray', JSON.stringify(finalArray));
       })
       .catch( error => this.setErrorStatus(error));
   }
@@ -65,6 +85,7 @@ class App extends Component {
           });
         });
         this.setState({ vehicleArray: finalVehicleArray});
+        localStorage.setItem('vehicleArray', JSON.stringify(finalVehicleArray));
       })
       .catch( error => this.setErrorStatus(error));
   }
@@ -104,6 +125,7 @@ class App extends Component {
               residents: names});
           });
           this.setState({ planetArray: finalArray});
+          localStorage.setItem('planetArray', JSON.stringify(finalArray));
         });
       })
       .catch( error => this.setErrorStatus(error));
@@ -133,6 +155,7 @@ class App extends Component {
           this.setState({
             peopleArray: finalArray,
             currentDataArray: finalArray});
+          localStorage.setItem('peopleArray', JSON.stringify(finalArray));
         });
       }).catch( error => this.setErrorStatus(error));
   }
