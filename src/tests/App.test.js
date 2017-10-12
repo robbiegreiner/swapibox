@@ -75,7 +75,7 @@ describe('App component unit testing', () => {
   });
 
   test(`should render an instance of Crawler with correct data
-        and recieve correct props from App`, () => {
+        and receive correct props from App`, () => {
       const crawler = wrapper.find('Crawler');
       const pTag = crawler.find('p').at(1);
       const pTagText = pTag.text();

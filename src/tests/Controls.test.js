@@ -29,7 +29,7 @@ describe('Controls component unit testing', () => {
     expect(wrapper.exists()).toEqual(true);
   });
 
-  test(`should render a parent div three button nodes`, () => {
+  test(`should render a parent div four button nodes`, () => {
     expect(div.type()).toEqual('div');
     expect(button.first().type()).toEqual('button');
     expect(button.length).toEqual(4);
